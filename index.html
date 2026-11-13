@@ -16,6 +16,8 @@ asesoría legal.
 <meta name="description" content="Este sitio ocupa nuestras redes sociales.">
 <meta name="author" content="AlexDoesCodee">
 <meta name="theme-color" content="#0b0b0f">
+<link rel="icon" type="image/png" sizes="192x192" href="favicon.png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
 <link rel="canonical" href="https://paisaclips-x5.github.io/PaisaClips-Pagina-/">
 <meta property="og:type" content="website">
 <meta property="og:site_name" content="Paisa Clips">
@@ -88,7 +90,7 @@ h1::before{content:"";position:absolute;inset:-40% -12%;z-index:-1;pointer-event
 .name{flex:1;text-align:left;font-weight:700;font-size:1.05rem}
 .go{color:var(--muted);transition:transform .25s,color .25s}
 .link:hover .go{transform:translateX(4px);color:var(--gold)}
-.link.soon{opacity:.55;cursor:default}
+.link.soon{opacity:.8;cursor:default}
 .link.soon:hover{transform:none;border-color:var(--line);background:rgba(255,255,255,.05);box-shadow:none}
 .link.soon::after{display:none}
 .soon-tag{font-size:.62rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted);border:1px solid var(--line);padding:3px 8px;border-radius:999px}
@@ -328,16 +330,17 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
 
 /* ===== Botones de redes (con ícono) ===== */
 .link{padding:12px 16px;gap:14px}
-.ico{position:relative;flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;color:var(--c,var(--gold));background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.22),rgba(var(--cr,255,199,44),.05));border:1px solid rgba(var(--cr,255,199,44),.32);transition:transform .45s cubic-bezier(.3,1.6,.5,1),box-shadow .3s,background .3s}
+.ico{position:relative;flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;color:var(--c,var(--gold));background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.22),rgba(var(--cr2,var(--cr,255,199,44)),.12));border:1px solid rgba(var(--cr,255,199,44),.32);transition:transform .45s cubic-bezier(.3,1.6,.5,1),box-shadow .3s,background .3s}
 .ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
 .ico img{width:27px;height:27px;object-fit:contain}
 .txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left}
 .txt .name{flex:none}
 .sub{font-size:.74rem;letter-spacing:.04em;color:var(--muted);overflow-wrap:anywhere}
 .link:not(.soon):active .ico{transform:scale(.88)}
-.link.soon .ico{opacity:.7}
+.link.soon .ico{opacity:1}
+.link.soon .name{color:var(--muted)}
 @media (hover:hover) and (pointer:fine){
-  .link:not(.soon):hover .ico{transform:scale(1.1) rotate(-7deg);box-shadow:0 0 20px -2px rgba(var(--cr,255,199,44),.55);background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.34),rgba(var(--cr,255,199,44),.08))}
+  .link:not(.soon):hover .ico{transform:scale(1.1) rotate(-7deg);box-shadow:-3px -2px 18px -4px rgba(var(--cr,255,199,44),.6),3px 2px 18px -4px rgba(var(--cr2,var(--cr,255,199,44)),.6);background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.34),rgba(var(--cr2,var(--cr,255,199,44)),.18))}
 }
 @media (max-width:600px){
   .link{min-height:62px;padding:11px clamp(12px,3.6vw,16px);gap:clamp(11px,3.4vw,14px)}
@@ -408,7 +411,12 @@ const CONFIG = {
   links: [
     { label: "Facebook",  sub: "Síguenos",       glyph: "group",  color: "#5b9bff", icon: "facebook-icon.png", url: "https://www.facebook.com/profile.php?id=61596185356334" },
     { label: "Instagram", sub: "@paisaclips.x5", glyph: "camera", color: "#ff5c93", icon: "instagram-icon.png", url: "https://www.instagram.com/paisaclips.x5/" },
-    { label: "YouTube",   sub: "Suscríbete",     glyph: "play",   color: "#ff5252", icon: "youtube-icon.png", url: "https://www.youtube.com/channel/UCimemD7PKt2bkGNqzs6f6lw" }
+    { label: "YouTube",   sub: "Suscríbete",     glyph: "play",   color: "#ff5252", icon: "youtube-icon.png", url: "https://www.youtube.com/channel/UCimemD7PKt2bkGNqzs6f6lw" },
+    // TikTok: cuando tengas el perfil, pega el link entre las comillas de url, por ejemplo:
+    //   url: "https://www.tiktok.com/@tuusuario"
+    // El botón se activa solo y debajo aparece @tuusuario. (Si usas un link corto tipo vm.tiktok.com,
+    // escribe el usuario a mano en sub: "@tuusuario".)
+    { label: "TikTok",    sub: "",               glyph: "link",   color: "#25f4ee", color2: "#fe2c55", icon: "tiktok-icon.png", url: "" }
   ]
 };
 
@@ -501,6 +509,11 @@ if (CONFIG.logo) {
     play:   '<circle cx="12" cy="12" r="9"/><path d="M10 8.8 16 12l-6 3.2z"/>',
     link:   '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>'
   };
+  // Saca el @usuario del link si lo trae (TikTok, YouTube con @, etc.)
+  function userFromUrl(u) {
+    const m = /\/(@[A-Za-z0-9._-]+)/.exec(u || "");
+    return m ? m[1] : "";
+  }
   function rgb(hex) {
     const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
     if (!m) return "255,199,44";
@@ -518,9 +531,11 @@ if (CONFIG.logo) {
       '<span class="txt"><span class="name"></span><span class="sub"></span></span>' +
       (pending ? '<span class="soon-tag">Próximamente</span>' : '<span class="go">→</span>');
     el.querySelector(".name").textContent = l.label;
-    el.querySelector(".sub").textContent = l.sub || "";
-    if (!l.sub) el.querySelector(".sub").remove();
+    const subText = l.sub || (pending ? "" : userFromUrl(l.url));
+    el.querySelector(".sub").textContent = subText;
+    if (!subText) el.querySelector(".sub").remove();
     el.style.setProperty("--cr", rgb(l.color));
+    el.style.setProperty("--cr2", rgb(l.color2 || l.color));
     el.style.setProperty("--c", l.color || "var(--gold)");
     const ico = el.querySelector(".ico");
     if (l.icon) {
