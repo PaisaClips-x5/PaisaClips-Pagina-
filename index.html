@@ -12,12 +12,26 @@ asesoría legal.
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Paisa Clips | Página oficial</title>
-<meta name="description" content="Paisa Clips, página oficial. Los mejores clips, jugadas épicas y risas del mundo de los videojuegos.">
+<title>Paisa Clips | Sitio oficial</title>
+<meta name="description" content="Este sitio ocupa nuestras redes sociales.">
 <meta name="author" content="AlexDoesCodee">
 <meta name="theme-color" content="#0b0b0f">
-<meta property="og:title" content="Paisa Clips | Página oficial">
-<meta property="og:description" content="Los mejores clips, jugadas épicas y risas del mundo de los videojuegos.">
+<link rel="canonical" href="https://paisaclips-x5.github.io/PaisaClips-Pagina-/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Paisa Clips">
+<meta property="og:locale" content="es_CO">
+<meta property="og:url" content="https://paisaclips-x5.github.io/PaisaClips-Pagina-/">
+<meta property="og:title" content="Es Paisa Clips, sitio oficial">
+<meta property="og:description" content="Este sitio ocupa nuestras redes sociales.">
+<meta property="og:image" content="https://paisaclips-x5.github.io/PaisaClips-Pagina-/logo-preview.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="600">
+<meta property="og:image:height" content="600">
+<meta property="og:image:alt" content="Logo de Paisa Clips">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Es Paisa Clips, sitio oficial">
+<meta name="twitter:description" content="Este sitio ocupa nuestras redes sociales.">
+<meta name="twitter:image" content="https://paisaclips-x5.github.io/PaisaClips-Pagina-/logo-preview.png">
 <style>
 :root{--bg:#0b0b0f;--gold:#ffc72c;--orange:#ff7a1a;--ink:#f5f1e6;--muted:#a9a395;--line:rgba(255,255,255,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
@@ -270,6 +284,67 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
   .share-button{margin-top:12px;min-height:44px;padding:10px 14px;font-size:.8rem}
 }
 
+
+/* ===== Contacto ===== */
+.contact{width:100%;margin-top:30px;display:flex;flex-direction:column;align-items:center;gap:14px}
+.contact-label{display:flex;align-items:center;gap:12px;width:100%;font-size:.62rem;letter-spacing:.28em;text-transform:uppercase;color:var(--muted);opacity:.65}
+.contact-label::before,.contact-label::after{content:"";flex:1;height:1px;background:linear-gradient(90deg,transparent,var(--line))}
+.contact-label::after{transform:scaleX(-1)}
+.contact[hidden]{display:none}
+
+.mail{position:relative;display:inline-flex;align-items:center;gap:10px;max-width:100%;padding:6px 18px 6px 6px;border:1px solid var(--line);border-radius:999px;background:rgba(255,255,255,.04);color:var(--ink);text-decoration:none;overflow:hidden;touch-action:manipulation;-webkit-tap-highlight-color:transparent;transition:transform .25s cubic-bezier(.2,.8,.2,1),border-color .25s,background .25s,box-shadow .25s}
+.mail::after{content:"";position:absolute;top:0;left:0;width:40%;height:100%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.14),transparent);transform:translateX(-150%) skewX(-20deg);transition:transform .7s ease;pointer-events:none}
+.mail:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+.mail:focus-visible::after{transform:translateX(400%) skewX(-20deg)}
+.mail:active{transform:scale(.95);border-color:var(--gold);background:rgba(255,199,44,.14);box-shadow:inset 0 3px 14px rgba(0,0,0,.45),0 0 0 4px rgba(255,199,44,.14);transition-duration:.08s}
+
+.mail-ico{position:relative;flex:0 0 auto;width:32px;height:32px;display:grid;place-items:center;border-radius:50%;color:var(--gold);background:radial-gradient(circle at 30% 25%,rgba(255,199,44,.22),rgba(255,199,44,.06));border:1px solid rgba(255,199,44,.28);animation:mailFloat 3.4s ease-in-out infinite}
+.mail-svg{width:16px;height:16px;overflow:visible;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.mail-svg .flap{transform-box:view-box;transform-origin:12px 5px;transition:transform .4s cubic-bezier(.3,1.5,.5,1)}
+.mail-dot{position:absolute;top:0;right:0;width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 8px var(--orange);border:2px solid var(--bg);animation:blink 1.8s infinite}
+@keyframes mailFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-3px)}}
+
+.mail-name{font-size:.8rem;font-weight:700;letter-spacing:.03em;white-space:nowrap;transition:color .25s}
+
+@media (hover:hover) and (pointer:fine){
+  .mail:hover{transform:translateY(-3px);border-color:rgba(255,199,44,.6);background:rgba(255,199,44,.08);box-shadow:0 10px 30px -10px rgba(255,199,44,.35)}
+  .mail:hover::after{transform:translateX(400%) skewX(-20deg)}
+  .mail:hover .flap{transform:scaleY(-.55)}
+  .mail:hover .mail-name{color:var(--gold)}
+}
+@media (max-width:600px){
+  .contact{margin-top:clamp(22px,6vw,30px);gap:12px}
+  .mail{min-height:44px}
+  .mail-name{font-size:clamp(.74rem,3.3vw,.8rem)}
+}
+@media (max-width:900px) and (max-height:500px) and (orientation:landscape){
+  .contact{margin-top:16px;gap:10px}
+}
+@media (prefers-reduced-motion:reduce){
+  .mail-ico,.mail-dot{animation:none}
+}
+
+/* ===== Botones de redes (con ícono) ===== */
+.link{padding:12px 16px;gap:14px}
+.ico{position:relative;flex:0 0 auto;width:44px;height:44px;display:grid;place-items:center;border-radius:14px;color:var(--c,var(--gold));background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.22),rgba(var(--cr,255,199,44),.05));border:1px solid rgba(var(--cr,255,199,44),.32);transition:transform .45s cubic-bezier(.3,1.6,.5,1),box-shadow .3s,background .3s}
+.ico svg{width:22px;height:22px;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+.ico img{width:27px;height:27px;object-fit:contain}
+.txt{flex:1;min-width:0;display:flex;flex-direction:column;gap:2px;text-align:left}
+.txt .name{flex:none}
+.sub{font-size:.74rem;letter-spacing:.04em;color:var(--muted);overflow-wrap:anywhere}
+.link:not(.soon):active .ico{transform:scale(.88)}
+.link.soon .ico{opacity:.7}
+@media (hover:hover) and (pointer:fine){
+  .link:not(.soon):hover .ico{transform:scale(1.1) rotate(-7deg);box-shadow:0 0 20px -2px rgba(var(--cr,255,199,44),.55);background:linear-gradient(145deg,rgba(var(--cr,255,199,44),.34),rgba(var(--cr,255,199,44),.08))}
+}
+@media (max-width:600px){
+  .link{min-height:62px;padding:11px clamp(12px,3.6vw,16px);gap:clamp(11px,3.4vw,14px)}
+  .ico{width:42px;height:42px;border-radius:13px}
+}
+@media (max-width:360px){
+  .ico{width:38px;height:38px}
+  .ico svg{width:20px;height:20px}
+}
 </style>
 </head>
 <body>
@@ -296,6 +371,20 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
     </svg>
     <span id="shareLabel">Compartir página</span>
   </button>
+
+  <section class="contact reveal" id="contact" style="--i:19" aria-label="Contacto comercial">
+    <div class="contact-label"><span>Contáctanos</span></div>
+    <a class="mail" id="mailLink" href="#">
+      <span class="mail-ico" aria-hidden="true">
+        <svg class="mail-svg" viewBox="0 0 24 24" focusable="false">
+          <rect x="3" y="5" width="18" height="14" rx="2.5"/>
+          <path class="flap" d="M3.5 7.5 12 13l8.5-5.5"/>
+        </svg>
+        <i class="mail-dot"></i>
+      </span>
+      <span class="mail-name" id="mailName"></span>
+    </a>
+  </section>
 </main>
 
 <div class="stage" aria-hidden="true"><div class="row" id="ticker"></div></div>
@@ -309,11 +398,14 @@ const CONFIG = {
   tagline: "no se que poner ",
   ticker: "Paisa Clips",
   footer: "© Paisa Clips · Página oficial",
+  contact: "gameoflife1518@gmail.com",
+  contactName: "Paisa Clips Business",
   logo: "",
+  // icon: opcional. Ruta de un logo propio (ej. "iconos/instagram.svg"). Si queda vacío se usa el ícono genérico.
   links: [
-    { label: "Facebook",  url: "https://www.facebook.com/profile.php?id=61596185356334" },
-    { label: "Instagram", url: "https://www.instagram.com/paisaclips.x5/" },
-    { label: "YouTube",   url: "https://www.youtube.com/channel/UCimemD7PKt2bkGNqzs6f6lw" }
+    { label: "Facebook",  sub: "Síguenos",       glyph: "group",  color: "#5b9bff", icon: "facebook-icon.png", url: "https://www.facebook.com/profile.php?id=61596185356334" },
+    { label: "Instagram", sub: "@paisaclips.x5", glyph: "camera", color: "#ff5c93", icon: "instagram-icon.png", url: "https://www.instagram.com/paisaclips.x5/" },
+    { label: "YouTube",   sub: "Suscríbete",     glyph: "play",   color: "#ff5252", icon: "youtube-icon.png", url: "https://www.youtube.com/channel/UCimemD7PKt2bkGNqzs6f6lw" }
   ]
 };
 
@@ -363,7 +455,7 @@ const $ = id => document.getElementById(id);
 })();
 
 
-document.title = CONFIG.name + " | " + CONFIG.badge;
+document.title = CONFIG.name + " | Sitio oficial";
 $("badge").textContent = CONFIG.badge;
 $("footer").textContent = CONFIG.footer;
 
@@ -400,6 +492,18 @@ if (CONFIG.logo) {
 
 (function () {
   const nav = $("links");
+  const GLYPHS = {
+    group:  '<circle cx="9" cy="8.5" r="3"/><path d="M3.5 19c.4-3 2.6-5 5.5-5s5.1 2 5.5 5"/><circle cx="17" cy="9.5" r="2.4"/><path d="M16 14.2c2.4-.3 4.2 1.4 4.5 4.3"/>',
+    camera: '<rect x="3" y="7" width="18" height="12" rx="3"/><path d="M8.5 7 9.7 5h4.6L15.5 7"/><circle cx="12" cy="13" r="3.2"/>',
+    play:   '<circle cx="12" cy="12" r="9"/><path d="M10 8.8 16 12l-6 3.2z"/>',
+    link:   '<path d="M10 14a4 4 0 0 0 5.7 0l3-3a4 4 0 0 0-5.7-5.7l-1 1"/><path d="M14 10a4 4 0 0 0-5.7 0l-3 3a4 4 0 0 0 5.7 5.7l1-1"/>'
+  };
+  function rgb(hex) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex || "");
+    if (!m) return "255,199,44";
+    const n = parseInt(m[1], 16);
+    return [(n >> 16) & 255, (n >> 8) & 255, n & 255].join(",");
+  }
   CONFIG.links.forEach((l, i) => {
     const pending = !l.url || l.url.includes("TU_");
     const el = document.createElement(pending ? "div" : "a");
@@ -407,10 +511,23 @@ if (CONFIG.logo) {
     el.style.setProperty("--i", 14 + i);
     if (pending) el.setAttribute("aria-disabled", "true");
     else { el.href = l.url; el.target = "_blank"; el.rel = "noopener noreferrer"; }
-    el.innerHTML = '<span class="num"></span><span class="name"></span>' +
+    el.innerHTML = '<span class="ico" aria-hidden="true"></span>' +
+      '<span class="txt"><span class="name"></span><span class="sub"></span></span>' +
       (pending ? '<span class="soon-tag">Próximamente</span>' : '<span class="go">→</span>');
-    el.querySelector(".num").textContent = String(i + 1).padStart(2, "0");
     el.querySelector(".name").textContent = l.label;
+    el.querySelector(".sub").textContent = l.sub || "";
+    if (!l.sub) el.querySelector(".sub").remove();
+    el.style.setProperty("--cr", rgb(l.color));
+    el.style.setProperty("--c", l.color || "var(--gold)");
+    const ico = el.querySelector(".ico");
+    if (l.icon) {
+      const img = new Image();
+      img.alt = "";
+      img.src = l.icon;
+      ico.appendChild(img);
+    } else {
+      ico.innerHTML = '<svg viewBox="0 0 24 24" focusable="false">' + (GLYPHS[l.glyph] || GLYPHS.link) + '</svg>';
+    }
     nav.appendChild(el);
   });
 
@@ -461,6 +578,28 @@ if (CONFIG.logo) {
   }
 })();
 
+
+
+(function () {
+  const box = $("contact");
+  const email = (CONFIG.contact || "").trim();
+  if (!email) { box.hidden = true; return; }
+
+  const link = $("mailLink");
+  $("mailName").textContent = CONFIG.contactName || "Contacto";
+  link.href = "mailto:" + email + "?subject=" + encodeURIComponent("Contacto desde la página de " + CONFIG.name);
+
+  // Ondita dorada al tocar, igual que los botones de las redes
+  link.addEventListener("pointerdown", e => {
+    const r = link.getBoundingClientRect();
+    const s = document.createElement("span");
+    s.className = "ripple";
+    s.style.left = (e.clientX - r.left) + "px";
+    s.style.top = (e.clientY - r.top) + "px";
+    link.appendChild(s);
+    s.addEventListener("animationend", () => s.remove());
+  });
+})();
 
 </script>
 </body>
