@@ -34,8 +34,13 @@ asesoría legal.
 <meta name="twitter:title" content="Es Paisa Clips, sitio oficial">
 <meta name="twitter:description" content="Este sitio ocupa nuestras redes sociales.">
 <meta name="twitter:image" content="https://paisaclips-x5.github.io/PaisaClips-Pagina-/logo-preview.png">
+<script>
+(function(d){d.classList.add("js");
+if(!(window.CSS&&CSS.registerProperty))d.classList.add("no-prop");
+setTimeout(function(){if(!d.classList.contains("rv-ready"))d.classList.add("rv-off")},3000)})(document.documentElement);
+</script>
 <style>
-:root{--bg:#0b0b0f;--gold:#ffc72c;--orange:#ff7a1a;--ink:#f5f1e6;--muted:#a9a395;--line:rgba(255,255,255,.12)}
+:root{--ease:cubic-bezier(.16,1,.3,1);--bg:#0b0b0f;--gold:#ffc72c;--orange:#ff7a1a;--ink:#f5f1e6;--muted:#a9a395;--line:rgba(255,255,255,.12)}
 *{box-sizing:border-box;margin:0;padding:0}
 body{min-height:100svh;background:var(--bg);color:var(--ink);font-family:system-ui,-apple-system,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;display:flex;flex-direction:column;overflow-x:hidden}
 
@@ -50,8 +55,6 @@ body{min-height:100svh;background:var(--bg);color:var(--ink);font-family:system-
 @keyframes rise{0%{transform:translate3d(0,0,0) scale(.6);opacity:0}10%{opacity:.9}100%{transform:translate3d(0,-105vh,0) scale(1.2);opacity:0}}
 
 main{position:relative;z-index:1;width:100%;max-width:420px;margin:0 auto;padding:48px 20px 16px;text-align:center;flex:1;display:flex;flex-direction:column;align-items:center}
-.reveal{animation:up .7s cubic-bezier(.2,.8,.2,1) backwards;animation-delay:calc(var(--i,0) * 110ms)}
-@keyframes up{from{opacity:0;transform:translateY(18px)}}
 
 .logo{position:relative;width:190px;height:190px;margin-bottom:18px;display:grid;place-items:center;cursor:pointer;-webkit-tap-highlight-color:transparent}
 .ring{position:absolute;inset:0;border-radius:50%;background:conic-gradient(from 0deg,var(--gold),var(--orange),transparent 40%,var(--gold));animation:spin 6s linear infinite;-webkit-mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px));mask:radial-gradient(farthest-side,transparent calc(100% - 3px),#000 calc(100% - 2px))}
@@ -350,6 +353,50 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
   .ico{width:38px;height:38px}
   .ico svg{width:20px;height:20px}
 }
+
+/* ===== #7 Transición entre secciones: cada bloque entra con desplazamiento suave al hacer scroll ===== */
+.reveal{--rv-y:34px;--rv-s:.975}
+.reveal.logo{--rv-y:24px}
+.reveal.badge{--rv-y:16px}
+.reveal.stage{--rv-y:22px;--rv-s:1}
+footer.reveal{--rv-y:14px;--rv-s:1}
+html.js .reveal:not(.is-in){opacity:0;translate:0 var(--rv-y);scale:var(--rv-s)}
+html.js .reveal.is-in{animation:sectionIn 1s var(--ease) var(--rv-delay,0ms) both}
+@keyframes sectionIn{from{opacity:0;translate:0 var(--rv-y);scale:var(--rv-s)}to{opacity:1;translate:0 0;scale:1}}
+html.js .reveal.rv-done{opacity:1;translate:none;scale:none;animation:none}
+
+/* Contacto: las líneas se dibujan desde la etiqueta hacia afuera y el botón sube un instante después */
+html.js .contact:not(.is-in) .contact-label::before,html.js .contact:not(.is-in) .contact-label::after{clip-path:inset(0 0 0 100%)}
+html.js .contact.is-in .contact-label::before,html.js .contact.is-in .contact-label::after{animation:lineDraw 1.2s var(--ease) calc(var(--rv-delay,0ms) + 280ms) backwards}
+html.js .contact.is-in .mail{animation:mailRise 1s var(--ease) calc(var(--rv-delay,0ms) + 220ms) backwards}
+@keyframes lineDraw{from{clip-path:inset(0 0 0 100%)}to{clip-path:inset(0 0 0 0)}}
+@keyframes mailRise{from{opacity:0;translate:0 18px}}
+
+/* ===== #5 Brillo dorado: una luz recorre el borde de los botones a velocidad constante ===== */
+@property --gx{syntax:"<percentage>";inherits:false;initial-value:0%}
+@property --gy{syntax:"<percentage>";inherits:false;initial-value:0%}
+.link:not(.soon)::before,.share-button::before,.mail::before{
+  content:"";position:absolute;inset:0;padding:1px;border-radius:inherit;pointer-events:none;--gr:46px;
+  background:radial-gradient(circle var(--gr) at var(--gx) var(--gy),#fff6d0 0,rgba(255,199,44,.95) 22%,rgba(255,150,30,.4) 50%,rgba(255,122,26,0) 72%);
+  -webkit-mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);-webkit-mask-composite:xor;
+  mask:linear-gradient(#000 0 0) content-box,linear-gradient(#000 0 0);mask-composite:exclude;
+  opacity:.8;transition:opacity .35s ease;
+  animation:edgeRun var(--gt,9s) linear var(--gd,0s) infinite}
+.link:not(.soon)::before{--gd:calc(var(--i,0) * -2.3s)}
+.share-button::before{--gr:36px;--gt:7s;--gd:-3s}
+.mail::before{--gr:34px;--gt:7.5s;--gd:-5.5s}
+.link:not(.soon):hover::before,.link:focus-visible::before,.share-button:hover::before,.share-button:focus-visible::before,.mail:hover::before,.mail:focus-visible::before{opacity:1}
+@keyframes edgeRun{0%{--gx:0%;--gy:0%}42%{--gx:100%;--gy:0%}50%{--gx:100%;--gy:100%}92%{--gx:0%;--gy:100%}100%{--gx:0%;--gy:0%}}
+html.no-prop .link::before,html.no-prop .share-button::before,html.no-prop .mail::before{display:none}
+
+/* Respeto a "reducir movimiento" y salvavidas si el script no llegó a correr */
+@media (prefers-reduced-motion:reduce){
+  html.js .reveal{opacity:1!important;translate:none!important;scale:none!important;animation:none!important}
+  html.js .contact .contact-label::before,html.js .contact .contact-label::after,html.js .contact .mail{clip-path:none!important;animation:none!important}
+  .link:not(.soon)::before,.share-button::before,.mail::before{animation:none!important;--gx:50%;--gy:0%;opacity:.55}
+}
+html.rv-off .reveal{opacity:1!important;translate:none!important;scale:none!important;animation:none!important}
+html.rv-off .contact .contact-label::before,html.rv-off .contact .contact-label::after{clip-path:none!important}
 </style>
 </head>
 <body>
@@ -370,7 +417,7 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
   <h1 id="title"></h1>
   <p class="tag" id="tag"></p>
   <nav class="links" id="links" aria-label="Redes oficiales"></nav>
-  <button class="share-button" id="shareButton" type="button" aria-label="Compartir página de Paisa Clips">
+  <button class="share-button reveal" style="--i:18" id="shareButton" type="button" aria-label="Compartir página de Paisa Clips">
     <svg class="share-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false">
       <path d="M12 16V3m0 0L7.5 7.5M12 3l4.5 4.5M5 13v6a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-6" />
     </svg>
@@ -393,8 +440,8 @@ footer{position:relative;z-index:1;text-align:center;padding:4px 16px calc(20px 
   </section>
 </main>
 
-<div class="stage" aria-hidden="true"><div class="row" id="ticker"></div></div>
-<footer id="footer"></footer>
+<div class="stage reveal" style="--i:20" aria-hidden="true"><div class="row" id="ticker"></div></div>
+<footer class="reveal" style="--i:21" id="footer"></footer>
 
 <script>
 //   textos y redes. Usar prefijo TU_USUARIO = proximamente".
@@ -676,6 +723,50 @@ if (CONFIG.logo) {
       if (!left) fallback();
     }, 1500);
   });
+})();
+
+// Aparición por secciones: lo que ya está a la vista entra con la coreografía de carga;
+// el resto entra suavemente cuando se llega a él al bajar por la página.
+(function () {
+  const root = document.documentElement;
+  const items = Array.from(document.querySelectorAll(".reveal"));
+  root.classList.add("rv-ready");
+
+  const reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce || !("IntersectionObserver" in window)) {
+    items.forEach(el => el.classList.add("is-in", "rv-done"));
+    return;
+  }
+
+  document.addEventListener("animationend", e => {
+    const el = e.target;
+    if (e.animationName === "sectionIn" && el.classList && el.classList.contains("reveal")) el.classList.add("rv-done");
+  });
+
+  let first = true;
+  const io = new IntersectionObserver(entries => {
+    const initial = first;
+    first = false;
+    const seen = entries.filter(e => e.isIntersecting).sort((a, b) => a.boundingClientRect.top - b.boundingClientRect.top);
+
+    // Si la página se recargó ya bajada, lo que quedó arriba aparece sin animación
+    entries.forEach(e => {
+      if (!e.isIntersecting && e.boundingClientRect.top < 0) {
+        e.target.classList.add("is-in", "rv-done");
+        io.unobserve(e.target);
+      }
+    });
+
+    seen.forEach((e, k) => {
+      const el = e.target;
+      const i = parseFloat(getComputedStyle(el).getPropertyValue("--i")) || 0;
+      el.style.setProperty("--rv-delay", (initial ? i * 110 : k * 90) + "ms");
+      el.classList.add("is-in");
+      io.unobserve(el);
+    });
+  }, { threshold: 0.15, rootMargin: "0px 0px -6% 0px" });
+
+  items.forEach(el => io.observe(el));
 })();
 
 </script>
